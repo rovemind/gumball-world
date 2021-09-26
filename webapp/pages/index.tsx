@@ -8,30 +8,24 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>gumball.world</title>
-        <meta name="description" content="Candy Machine Explorer - NFT explorer and analytics platform for Solana." />
+        <meta
+          name="description"
+          content="Candy Machine Explorer - NFT explorer and analytics platform for Solana."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Home
-        </h1>
-
-      </main>
+      <main className="max-w-7xl mb-8 mx-auto px-4 sm:px-6"></main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://solana.com" target="_blank" rel="noopener noreferrer">
           Powered by{" "}
-          <span className={styles.logo}>
+          <span className="ml-2">
             <Image
-              src="/vercel.svg"
+              src="/solana.svg"
               alt="Vercel Logo"
-              width={72}
-              height={16}
+              width={100}
+              height={19}
             />
           </span>
         </a>
