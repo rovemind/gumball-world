@@ -11,4 +11,7 @@ const withTM = require('next-transpile-modules')([
 module.exports = withTM({
   reactStrictMode: true,
   webpack5: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 })
