@@ -10,7 +10,7 @@ import dbConnect from "../lib/database-connect";
 import CandyMachine from "../models/candy-machine";
 import ICandyMachine from "../types/candy-machine";
 
-const Home: NextPage = ({ upcomingCandyMachines, mintableCandyMachines }) => {
+const Home: NextPage = ({ upcomingCandyMachines, recentCandyMachines }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -23,9 +23,14 @@ const Home: NextPage = ({ upcomingCandyMachines, mintableCandyMachines }) => {
       </Head>
 
       <main className="max-w-7xl mb-8 mx-auto px-4 sm:px-6">
-        <h2 className="text-2xl font-bold my-4 leading-7 text-gray-900 sm:text-3xl sm:truncate">
-          Upcoming Mints
-        </h2>
+        <div className="mt-2 flex items-center justify-between">
+          <h2 className="text-2xl font-bold my-4 leading-7 text-gray-900 sm:text-3xl sm:truncate">
+            Upcoming Mints
+          </h2>
+          <p className="mt-1 text-md font-medium text-gray-600">
+            {upcomingCandyMachines?.length + " items"}
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {upcomingCandyMachines?.map((candyMachine: ICandyMachine) => (
@@ -68,11 +73,16 @@ const Home: NextPage = ({ upcomingCandyMachines, mintableCandyMachines }) => {
           ))}
         </div>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4 leading-7 text-gray-900 sm:text-3xl sm:truncate">
-          Recent Drops
-        </h2>
+        <div className="mt-2 flex items-center justify-between">
+          <h2 className="text-2xl font-bold mt-8 mb-4 leading-7 text-gray-900 sm:text-3xl sm:truncate">
+            Recent Drops
+          </h2>
+          <p className="mt-1 text-md font-medium text-gray-600">
+            {recentCandyMachines?.length + " items"}
+          </p>
+        </div>
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {mintableCandyMachines?.map((candyMachine: ICandyMachine) => (
+          {recentCandyMachines?.map((candyMachine: ICandyMachine) => (
             <div key={candyMachine.public_key} className="group">
               <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <img
@@ -168,11 +178,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
     .sort({ date: -1, name: 1, public_key: 1 })
     .limit(20);
-  const mintableCandyMachines = mintable.map((doc) => {
+  const recentCandyMachines = mintable.map((doc) => {
     const candyMachine = doc.toObject();
     candyMachine._id = candyMachine._id.toString();
     return JSON.parse(JSON.stringify(candyMachine));
   });
 
-  return { props: { upcomingCandyMachines, mintableCandyMachines } };
+  return { props: { upcomingCandyMachines, recentCandyMachines } };
 };
