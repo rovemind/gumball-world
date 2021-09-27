@@ -122,8 +122,7 @@ const Home: NextPage = ({ upcomingCandyMachines, recentCandyMachines }) => {
                   </Moment>
                 </p>
                 <p className="mt-1 text-md font-medium text-gray-500">
-                  {candyMachine?.items_num -
-                    candyMachine?.redeemed_items_num +
+                  {candyMachine?.redeemed_items_num +
                     " of " +
                     candyMachine?.items_num +
                     " minted"}
