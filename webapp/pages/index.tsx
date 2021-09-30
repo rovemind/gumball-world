@@ -95,7 +95,7 @@ const Home: NextPage = ({ upcomingCandyMachines, recentCandyMachines }) => {
               <div className="px-1">
                 <div className="mt-2 flex items-center justify-between">
                   <h3 className="text-lg text-gray-900 font-bold">
-                    {candyMachine?.symbol.length > 0 ? (
+                    {candyMachine?.symbol?.length > 0 ? (
                       candyMachine.symbol
                     ) : (
                       <span className="text-xs font-bold px-3 rounded py-1 uppercase bg-red-300 text-red-900 leading-none mt-4 sm:mt-0 w-full sm:w-auto text-center">
